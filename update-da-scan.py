@@ -83,15 +83,18 @@ data =   {
         }
 }
 
-#Retrieve DA Job ID by project name
+
 print("Looking for Dynamic Analysis Job: " + dynamic_job )
-try:
+#Retrieve DA Job ID by project name
     res = prepared_request('GET', 'https://api.veracode.com/was/configservice/v1/analyses', query=("name=" + dynamic_job))
     response = res.json()
+    try:
     job_id = response['_embedded']['analyses'][0]['analysis_id']
     #Update Schedule of existing DA Job
     res = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
-
+    except: 
+    print("Could not find Dynamic Analysis")
+    sys.exit(1)
     if res.status_code == 204:
         print("Scan Submitted Successfully: " + str(res.status_code) )
     else:
@@ -99,6 +102,3 @@ try:
         print("Error encountered: " + response['_embedded']['errors'][0]['detail'])
         sys.exit(1)
 
-except: 
-    print("Could not find Dynamic Analysis")
-    sys.exit(1)
