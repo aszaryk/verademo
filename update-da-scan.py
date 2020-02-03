@@ -3,7 +3,8 @@ import os
 import time                                                                     
 import hmac                                                                     
 import codecs
-import json                                                                
+import json  
+import sys                                                              
 from hashlib import sha256 
 import requests
 from requests.adapters import HTTPAdapter                                       
@@ -80,6 +81,8 @@ try:
     else:
         response = res.json()
         print("Error encountered: " + response['_embedded']['errors'][0]['detail'])
+        sys.exit(1)
 
 except: 
     print("Could not find Dynamic Analysis")
+    sys.exit(1)
