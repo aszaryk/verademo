@@ -59,19 +59,6 @@ def prepared_request(method, end_point, json=None, query=None, file=None):
 
 #Payload for updating schedule of existing DA job to start now
 data =   { 
-    "scans": [
-        {
-            "auth_configuration": {
-                "authentication": {
-                    "AUTO": {
-                        "username": "user_id",
-                        "password": "pass",
-                        "authtype": "AUTO"
-                    }
-                }
-            }
-        }
-    ],
     "schedule": 
         {       
             "now": True,
