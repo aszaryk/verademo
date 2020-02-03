@@ -57,7 +57,7 @@ def prepared_request(method, end_point, json=None, query=None, file=None):
 
 # code above this line is reusable for all/most API calls
 
-#Payload for updating schedule and login credentials of existing DA job to start now
+#Payload for updating schedule of existing DA job to start now
 data =   { 
     "scans": [
         {
@@ -96,12 +96,14 @@ except:
     sys.exit(1)
 
 #Update Schedule of existing DA Job
-res = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
-if res.status_code == 204:
-    print("Scan Submitted Successfully: " + str(res.status_code) )
-else:
-    response = res.json()
-    print (response)
-    print("Error encountered: " + response['_embedded']['errors'][0]['detail'])
-
+try:
+    res = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
+    if res.status_code == 204:
+        print("Scan Submitted Successfully: " + str(res.status_code) )
+    else:
+        response = res.json()
+        print("Error encountered: " + response['_embedded']['errors'][0]['detail'])
+except:
+    print("Error executing API Call")
+    sys.exit(1)
 
