@@ -7,7 +7,7 @@ node {
 
     stage('----Veracode Dynamic Analysis API----'){
         withCredentials([usernamePassword(credentialsId: 'veracode-credentials',passwordVariable: 'VeraPW', usernameVariable: 'VeraID')]){
-        sh 'python3 "$WORKSPACE/create-da-scan.py"'           
+        sh 'python3 "$WORKSPACE/update-da-scan.py"'           
              }
         }
 }    
