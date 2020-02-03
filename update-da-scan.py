@@ -96,11 +96,12 @@ except:
     sys.exit(1)
 
 #Update Schedule of existing DA Job
-res1 = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
+res = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
 if res.status_code == 204:
     print("Scan Submitted Successfully: " + str(res.status_code) )
 else:
-    response = res1.json()
+    response = res.json()
+    print (response)
     print("Error encountered: " + response['_embedded']['errors'][0]['detail'])
 
 
