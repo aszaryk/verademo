@@ -72,7 +72,7 @@ try:
     res = prepared_request('GET', 'https://api.veracode.com/was/configservice/v1/analyses', query=("name=" + dynamic_job))
     response = res.json()
     job_id = response['_embedded']['analyses'][0]['analysis_id']
-except error: 
+except: 
     print("Could not find Dynamic Analysis")
 #Update Schedule of existing DA Job
 res = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
