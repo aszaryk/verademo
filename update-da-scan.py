@@ -90,6 +90,7 @@ res = prepared_request('GET', 'https://api.veracode.com/was/configservice/v1/ana
 response = res.json()
 try:
     job_id = response['_embedded']['analyses'][0]['analysis_id']
+    print (job_id)
     #Update Schedule of existing DA Job
     res = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
     if res.status_code == 204:
