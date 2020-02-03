@@ -91,14 +91,16 @@ response = res.json()
 try:
     job_id = response['_embedded']['analyses'][0]['analysis_id']
     print (job_id)
-    #Update Schedule of existing DA Job
-    res = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
-    if res.status_code == 204:
-        print("Scan Submitted Successfully: " + str(res.status_code) )
-    else:
-        response = res.json()
-        print("Error encountered: " + response['_embedded']['errors'][0]['detail'])
 except: 
     print("Could not find Dynamic Analysis")
     sys.exit(1)
+
+#Update Schedule of existing DA Job
+res = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
+if res.status_code == 204:
+    print("Scan Submitted Successfully: " + str(res.status_code) )
+else:
+    response = res.json()
+    print("Error encountered: " + response['_embedded']['errors'][0]['detail'])
+
 
