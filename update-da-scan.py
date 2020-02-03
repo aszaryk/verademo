@@ -89,6 +89,7 @@ print("Looking for Dynamic Analysis Job: " + dynamic_job )
 res = prepared_request('GET', 'https://api.veracode.com/was/configservice/v1/analyses', query=("name=" + dynamic_job))
 response = res.json()
 try:
+    print response
     job_id = response['_embedded']['analyses'][0]['analysis_id']
     #Update Schedule of existing DA Job
     res = prepared_request('PUT', 'https://api.veracode.com/was/configservice/v1/analyses/' + job_id + '?method=PATCH', json=data)
