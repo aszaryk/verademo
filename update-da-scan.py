@@ -57,15 +57,30 @@ def prepared_request(method, end_point, json=None, query=None, file=None):
 
 # code above this line is reusable for all/most API calls
 
-#Payload for updating schedule of existing DA job
+#Payload for updating schedule and login credentials of existing DA job to start now
 data =   { 
-    "schedule": {
-      "now": True,
-      "duration": {
-        "length": 1,
-        "unit": "DAY"
-    }
-  }
+    "scans": [
+        {
+            "auth_configuration": {
+                "authentication": {
+                    "AUTO": {
+                        "username": "user_id",
+                        "password": "pass",
+                        "authtype": "AUTO"
+                    }
+                }
+            }
+        }
+    ],
+    "schedule": 
+        {       
+            "now": True,
+            "duration": 
+                {
+                "length": 1,
+                "unit": "DAY"
+                }
+        }
 }
 
 #Retrieve DA Job ID by project name
