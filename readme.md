@@ -7,7 +7,7 @@ The sample Jenkinsfile shows how to launch Dynamic Analysis scans from a pipelin
  - second stage, (----Create Veracode Dynamic Analysis Scan----), creates a new Dynamic Analysis job with the included JSON payload
  - third stage, (----Veracode Dynamic Analysis Scan Now----), updates an existing Dynamic Analysis job with a new schedule to kick off the job immediately
 
-## About
+## About the project
 
 Blab-a-Gag is a fairly simple forum type application which allows:
  - users to post a one-liner joke
